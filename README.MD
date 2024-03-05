@@ -1,25 +1,26 @@
-# Telegram-бот для поиска отелей
+# Telegram bot for hotel search
 
-Данный бот позволяет подбирать отели в соответствии с Вашими критериями поиска.
-Ссылка на бота https://t.me/niceee2meetbot.
+This bot allows you to find hotels according to your search criteria.
 
-## Функционал бота
+Link to the bot: https://t.me/niceee2meetbot.
 
-С помощью данного боты Вы можете:
+## Bot functionality
 
-- подобрать отели по самой низкой или высокой цене;
-- подобрать отели по лучшему соотношению цена/расстояние от центра города;
-- запросить историю запросов.
+With this bot, you can:
 
-По каждому отелю бот выводит следующие данные:
+- Find hotels based on the lowest or highest price.
+- Find hotels based on the best price-to-distance ratio from the city center.
+- Request search history.
 
-- Название отеля;
-- Сайт отеля;
-- Адрес отеля;
-- Удаленность от центра в км;
-- Период проживания, который ввел пользователь;
-- Стоимость проживания за определнный период;
-- Стоимость проживания за ночь.
+For each hotel, the bot displays the following data:
+
+- Hotel name.
+- Hotel website.
+- Hotel address.
+- Distance from the city center in kilometers.
+- Stay period entered by the user.
+- Accommodation cost for a specific period.
+- Accommodation cost per night.
 
 ## Requirements
 
@@ -30,56 +31,47 @@ certifi~=2022.6.15
 requests~=2.28.1
 loguru~=0.6.0
 
+To install the above libraries, run the following command: `pip install -r requirements.txt`
 
-Для установки вышеприведенных библиотек выполните следующую команду: pip install -r requirements.txt
+## Bot commands
 
-## Команды бота
+- /start - Launches the bot, automatically executed when connecting to the bot.
+- /help - List of commands and their descriptions.
+- /lowprice — Displays the cheapest hotels in the city.
+- /highprice — Displays the most expensive hotels in the city.
+- /bestdeal — Displays hotels that are the best deal in terms of price and distance from the center.
+- /history — Displays search history.
 
-- /start - запуск бота, выполняется автоматически при подключении к боту.
-- /help - список команд и их описание
-- /lowprice — вывод самых дешёвых отелей в городе;
-- /highprice — вывод самых дорогих отелей в городе;
-- /bestdeal — вывод отелей, наиболее подходящих по цене и расположению от центра;
-- /history — вывод истории поиска отелей.
+### Telegram bot command descriptions
 
-### Описание команд телеграм-бота
+#### Search for the cheapest hotels (/lowprice)
 
-#### Поиск самых дешевых отелей (/lowprice)
+1. Upon entering the /lowprice command, the bot asks for the city where you want to find hotels.
+2. Next, the user enters the name of the locality. The bot will make a request to the hotels API and display a list of locations whose names are similar to the entered city. If the bot does not find any location, you need to enter the city name again; perhaps the user made a mistake when entering it.
+3. Next, the number of hotels to display is requested.
+4. Then the user selects the check-in and check-out dates.
+5. After determining the check-in and check-out dates, the bot asks the user if they want to display hotel photos.
+6. If the answer is positive, the bot sends the user an album (in case there is more than 1 photo) of photos with information (see above) for each hotel found.
 
-1. При вводе команды /lowprice Бот запрашивает город, в котором Вы хотите найти отели.
-2. Далее пользователь вводит название населенного пункта. Бот выполнит запрос к hotels api и выведет список локаций,
-   названия которых похожи на введенный город. Если бот не найдет ни одну локацию, то необходимо ввести название города
-   еще раз, возможно пользователь допустил ошибку при вводе.
-3. Далее запрашивается кол-во отелей, которое необходимо вывести.
-4. Затем пользователь выбирает дату въезда и выезда.
-5. После определения дат въезда и выезда бот спрашивает у пользователя, нужно ли вывести фотографии отеля.
-6. В случае положительного ответа бот отправляет пользователю альбом (в случае, если фото > 1) фотографии с информацией
-   (см. выше) по каждому найденному отелю.
+#### Search for the most expensive hotels (/highprice)
 
-#### Поиск самых дорогих отелей (/highprice)
+1. Upon entering the /highprice command, the bot asks for the city where you want to find hotels.
+2. Next, the user enters the name of the locality. The bot will make a request to the hotels API and display a list of locations whose names are similar to the entered city. If the bot does not find any location, you need to enter the city name again; perhaps the user made a mistake when entering it.
+3. Next, the number of hotels to display is requested.
+4. Then the user selects the check-in and check-out dates.
+5. After determining the check-in and check-out dates, the bot asks the user if they want to display hotel photos.
+6. If the answer is positive, the bot sends the user an album (in case there is more than 1 photo) of photos with information (see above) for each hotel found.
 
-1. При вводе команды /highprice Бот запрашивает город, в котором Вы хотите найти отели.
-2. Далее пользователь вводит название населенного пункта. Бот выполнит запрос к hotels api и выведет список локаций,
-   названия которых похожи на введенный город. Если бот не найдет ни одну локацию, то необходимо ввести название города
-   еще раз, возможно пользователь допустил ошибку при вводе.
-3. Далее запрашивается кол-во отелей, которое необходимо вывести.
-4. Затем пользователь выбирает дату въезда и выезда.
-5. После определения дат въезда и выезда бот спрашивает у пользователя, нужно ли вывести фотографии отеля.
-6. В случае положительного ответа бот отправляет пользователю альбом (в случае, если фото > 1) фотографии с информацией
-   (см. выше) по каждому найденному отелю.
+#### Search for the best deals (/bestdeal)
 
-#### Поиск Лучших предложений (/bestdeal)
+1. Upon entering the /bestdeal command, the bot asks for the city where you want to find hotels.
+2. Next, the user enters the name of the locality. The bot will make a request to the hotels API and display a list of locations whose names are similar to the entered city. If the bot does not find any location, you need to enter the city name again; perhaps the user made a mistake when entering it.
+3. Next, the number of hotels to display is requested.
+4. Then the user sets the price range and the distance value from the city center in km.
+5. Then the user selects the check-in and check-out dates.
+6. After determining the check-in and check-out dates, the bot asks the user if they want to display hotel photos.
+7. If the answer is positive, the bot sends the user an album (in case there is more than 1 photo) of photos with information (see above) for each hotel found.
 
-1. При вводе команды /bestdeal Бот запрашивает город, в котором Вы хотите найти отели.
-2. Далее пользователь вводит название населенного пункта. Бот выполнит запрос к hotels api и выведет список локаций,
-   названия которых похожи на введенный город. Если бот не найдет ни одну локацию, то необходимо ввести название города
-   еще раз, возможно пользователь допустил ошибку при вводе.
-3. Далее запрашивается кол-во отелей, которое необходимо вывести.
-4. После пользователь задает диапазон цен, а также значение удаленности отелей от центра в км.
-5. Затем пользователь выбирает дату въезда и выезда.
-6. После определения дат въезда и выезда бот спрашивает у пользователя, нужно ли вывести фотографии отеля.
-7. В случае положительного ответа бот отправляет пользователю альбом (в случае, если фото > 1) фотографии с информацией
-   (см. выше) по каждому найденному отелю.
-   
-#### История запросов (/history)
-При вводе команды /history пользователь получает историю ВСЕХ своих запросов.
+#### Request search history (/history)
+
+Upon entering the /history command, the user receives the history of ALL their queries.
